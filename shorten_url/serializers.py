@@ -13,19 +13,20 @@ class ShortUrlField(serializers.Field):
     the base URL site included.
     """
 
-    def to_representation(self, obj):
-        """Serializing"""
+    def to_representation(self, obj: 'ShortUrlModel') -> str:
+        """Deserializing"""
 
         return os.path.join(settings.SITE_URL, obj.short_id)
 
-    def to_internal_value(self, short_id):
-        """Deserializing"""
+    def to_internal_value(self, short_id: str) -> Dict:
+        """Serializing"""
 
         if not short_id:
             raise serializers.ValidationError('This field may not be blank.')
         if len(short_id) != ShortUrlModel.ID_LENGTH:
             raise serializers.ValidationError(
-                f'Ensure this field has no more than {ShortUrlModel.ID_LENGTH} characters.')
+                f'Ensure this field has no more than {ShortUrlModel.ID_LENGTH} characters.'
+            )
 
         return {'short_id': short_id}
 
