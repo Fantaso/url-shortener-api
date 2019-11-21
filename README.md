@@ -77,7 +77,7 @@ git clone https://github.com/Fantaso/url-shortener-api.git
 pip install -r requirements.txt
 ```
 
-3. Initialize database and create the database mapping used for persistance in the ToDo app. _Docker-Compose was configured so the data created inside the container from the database service will be store in your repository's root dir. If you want the database data to be store in a docker volume, please go to the `docker-compose.yml` file and in the "Volume" section of the `db` service  choose one or the other._
+3. Initialize database and create the database mapping used for persistance in the url shortener API.
 ```sh
 python manage.py makemigrations
 ```
